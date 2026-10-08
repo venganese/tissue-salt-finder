@@ -1,0 +1,204 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Tissue Salt Finder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f6f1e7; --card:#fffdf8; --ink:#1f2a24; --muted:#6b7068;
+  --accent:#2f6b4f; --accent-2:#c9822b; --line:#e3dccd; --no:#a14a3b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:#222;font-family:Inter,system-ui,sans-serif;color:var(--ink);
+  display:flex;align-items:center;justify-content:center}
+/* 9:16 reel frame */
+.frame{position:relative;height:100vh;aspect-ratio:9/16;max-width:100vw;background:var(--bg);
+  overflow:hidden;display:flex;flex-direction:column;padding:5% 7% 4%}
+.frame::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(circle at 85% 8%,#e8d9b8 0,transparent 40%),
+             radial-gradient(circle at 10% 95%,#d6e4d6 0,transparent 45%)}
+header,main,footer,.bars{position:relative}
+header{text-align:center}
+.kicker{font-size:clamp(10px,1.5vh,14px);letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:600}
+h1{font-family:Fraunces,serif;font-weight:800;font-size:clamp(20px,3.6vh,40px);line-height:1.05;margin-top:.3em}
+.meta{display:flex;justify-content:center;gap:8px;flex-wrap:wrap;margin-top:1.4vh}
+.pill{font-size:clamp(10px,1.4vh,13px);background:#fff;border:1px solid var(--line);border-radius:999px;padding:.25em .8em;color:var(--muted)}
+main{flex:1;display:flex;flex-direction:column;justify-content:center}
+.group{text-align:center;color:var(--accent-2);font-weight:600;font-size:clamp(11px,1.7vh,16px);letter-spacing:.06em;text-transform:uppercase}
+.q{font-family:Fraunces,serif;font-weight:600;font-size:clamp(20px,3.3vh,34px);text-align:center;margin:1.2vh 0 3vh;line-height:1.2}
+.btns{display:flex;flex-direction:column;gap:1.2vh}
+.btn{all:unset;cursor:pointer;text-align:center;border-radius:16px;padding:1.6vh 4%;font-weight:600;
+  font-size:clamp(14px,2.1vh,20px);border:1.5px solid var(--line);background:var(--card);box-shadow:0 2px 0 var(--line);
+  transition:transform .12s}
+.btn:hover{transform:translateY(-2px)}
+.btn.yes{background:var(--accent);color:#fff;border-color:var(--accent)}
+.btn.no{color:var(--no);border-color:#e2c4bd}
+.btn.idk{color:var(--muted)}
+.back{all:unset;cursor:pointer;margin:2vh auto 0;color:var(--muted);font-size:clamp(11px,1.5vh,14px);border-bottom:1px solid}
+.back[hidden]{display:none}
+/* starting pick: scroll through groups, then features */
+.pick-h{text-align:center;font-family:Fraunces,serif;font-weight:600;font-size:clamp(18px,2.8vh,28px);margin-bottom:.6vh}
+.pick-sub{text-align:center;color:var(--muted);font-size:clamp(11px,1.5vh,14px);margin-bottom:1.6vh}
+.list{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:.9vh;padding:2px 2px 1vh;min-height:0}
+.item{all:unset;cursor:pointer;background:var(--card);border:1.5px solid var(--line);border-radius:14px;
+  padding:1.2vh 4%;font-size:clamp(13px,1.9vh,18px);font-weight:500;display:flex;justify-content:space-between;gap:8px}
+.item:hover{border-color:var(--accent)}
+.item small{color:var(--muted);font-weight:600;flex:none}
+.sub{font-size:clamp(10px,1.3vh,12px);letter-spacing:.08em;text-transform:uppercase;color:var(--accent-2);font-weight:600;margin:.8vh 2px 0}
+.picked{text-align:center;font-size:clamp(10px,1.4vh,13px);color:var(--muted);margin-top:-1vh;margin-bottom:1.6vh}
+.picked b{color:var(--accent)}
+main.picking{justify-content:flex-start;min-height:0}
+/* live score bars */
+.bars{display:grid;grid-template-columns:repeat(12,1fr);gap:4px;align-items:end;height:9vh;margin:1.5vh 0 .5vh}
+.bar{display:flex;flex-direction:column;justify-content:flex-end;height:100%}
+.bar i{display:block;background:var(--accent);border-radius:4px 4px 0 0;transition:height .5s ease;min-height:2px}
+.bar.top i{background:var(--accent-2)}
+.bar b{font-size:clamp(8px,1.2vh,11px);text-align:center;color:var(--muted);font-weight:600;margin-top:2px}
+/* result */
+.result h2{font-family:Fraunces,serif;font-size:clamp(20px,3.2vh,32px);text-align:center;margin-bottom:2vh}
+.salt{display:flex;align-items:center;gap:4%;background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:1.4vh 4%;margin-bottom:1.2vh}
+.salt .no{flex:none;width:6vh;height:6vh;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font-family:Fraunces,serif;font-weight:800;font-size:2.6vh}
+.salt .nm{flex:1}
+.salt .nm b{display:block;font-family:Fraunces,serif;font-size:clamp(17px,2.6vh,26px)}
+.salt .nm small{color:var(--muted);font-size:clamp(10px,1.4vh,13px)}
+.salt .pc{font-weight:700;font-size:clamp(15px,2.3vh,22px);color:var(--accent)}
+.why{font-size:clamp(10px,1.4vh,13px);color:var(--muted);text-align:center;margin-top:1vh}
+.again{all:unset;cursor:pointer;display:block;margin:2.5vh auto 0;color:var(--accent);font-weight:600;border-bottom:2px solid;font-size:clamp(13px,1.9vh,18px)}
+footer{text-align:center;font-size:clamp(9px,1.3vh,12px);color:var(--muted);line-height:1.4}
+footer strong{color:var(--ink)}
+.fade{animation:fade .35s ease both}
+@keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+body.rec .ctrl{display:none}
+.ctrl{position:fixed;left:12px;bottom:12px;display:flex;gap:6px}
+.ctrl button{font:600 12px Inter,sans-serif;padding:6px 10px;border-radius:8px;border:0;background:#fff;cursor:pointer}
+</style>
+</head>
+<body>
+<div class="frame">
+  <header>
+    <div class="kicker">The 12 Schüssler Tissue Salts</div>
+    <h1>Which cell salt<br>matches you?</h1>
+    <div class="meta"><span class="pill" id="count"></span><span class="pill" id="budget"></span></div>
+  </header>
+  <div class="bars" id="bars"></div>
+  <main id="stage"></main>
+  <footer>Traditional biochemic reference, for information only, <strong>not medical advice</strong>.<br>
+  Ask a qualified practitioner about potency &amp; dosage, and see a doctor for anything serious.</footer>
+</div>
+<div class="ctrl">
+  <button onclick="restart()">Restart</button>
+  <button onclick="document.body.classList.add('rec')">Hide (H)</button>
+</div>
+
+<script src="features.js"></script>
+<script src="engine.js"></script>
+<script>
+var D = SALT_DATA, E = SaltEngine, answers = [], current = null;
+var stage = document.getElementById('stage');
+
+function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;'}[c]; }); }
+
+function drawBars(){
+  var post = E.posterior(D, answers), max = Math.max.apply(null, post);
+  document.getElementById('bars').innerHTML = D.salts.map(function(s, i){
+    return '<div class="bar' + (post[i] === max && answers.length ? ' top' : '') + '"><i style="height:' +
+      Math.max(2, post[i] / Math.max(max, 1e-9) * 100) + '%"></i><b>' + s.no + '</b></div>';
+  }).join('');
+  var idk = answers.length - E.answeredCount(answers), limit = E.DEFAULTS.maxDepth + idk;
+  document.getElementById('count').textContent = answers.length ?
+    'Question ' + Math.min(answers.length + 1, limit) : 'Start: pick one feature';
+  document.getElementById('budget').textContent = 'Limit ' + limit + (idk ? ' (' + E.DEFAULTS.maxDepth + ' + ' + idk + ' "don\'t know")' : '');
+}
+
+// Browse areas for the starting pick; a feature can be listed in several areas
+var AREAS = D.areas;
+function inArea(ai){ return D.features.map(function(f, fi){ return fi; })
+  .filter(function(fi){ return D.features[fi].areas.indexOf(AREAS[ai]) !== -1; }); }
+
+function pickGroup(){
+  current = null;
+  drawBars();
+  stage.className = 'picking';
+  stage.innerHTML = '<div class="pick-h fade">What is present?</div>' +
+    '<div class="pick-sub fade">Choose an area, then one feature you are sure of</div>' +
+    '<div class="list">' + AREAS.map(function(a, ai){
+      return '<button class="item fade" onclick="pickFeature(' + ai + ')">' + esc(a) + '<small>' + inArea(ai).length + ' ›</small></button>';
+    }).join('') + '</div>';
+}
+
+// Feature list for one area, sub-headed by each feature's own group
+function pickFeature(ai){
+  var html = '', last = null;
+  inArea(ai).sort(function(x, y){
+    var gx = D.features[x].group, gy = D.features[y].group;
+    var hx = D.features[x].areas[0] === AREAS[ai] ? 0 : 1, hy = D.features[y].areas[0] === AREAS[ai] ? 0 : 1;
+    return hx - hy || (gx < gy ? -1 : gx > gy ? 1 : x - y);
+  }).forEach(function(fi){
+    var f = D.features[fi];
+    if (f.group !== last) { html += '<div class="sub">' + esc(f.group) + '</div>'; last = f.group; }
+    html += '<button class="item fade" onclick="start(' + fi + ',' + ai + ')">' + esc(f.feature) + '</button>';
+  });
+  stage.className = 'picking';
+  stage.innerHTML = '<div class="pick-h fade">' + esc(AREAS[ai]) + '</div>' +
+    '<div class="pick-sub fade">Tap the feature that is present</div>' +
+    '<div class="list">' + html + '</div>' +
+    '<button class="back" onclick="pickGroup()">↶ All areas</button>';
+}
+
+function start(fi, ai){ answers = [{fi: fi, a: 'yes', pick: true, area: ai}]; step(); }
+
+function step(){
+  if (!answers.length) return pickGroup();
+  stage.className = '';
+  drawBars();
+  current = E.nextQuestion(D, answers);
+  if (current.fi === null) return showResult(current.reason);
+  var f = D.features[current.fi], first = D.features[answers[0].fi];
+  stage.innerHTML =
+    '<div class="picked fade">Present: <b>' + esc(first.feature) + '</b></div>' +
+    '<div class="group fade">' + esc(f.group) + '</div>' +
+    '<div class="q fade">' + esc(f.feature) + '</div>' +
+    '<div class="btns">' +
+      '<button class="btn yes fade" onclick="answer(\'yes\')">Have this</button>' +
+      '<button class="btn no fade" onclick="answer(\'no\')">Don\'t have this</button>' +
+      '<button class="btn idk fade" onclick="answer(\'idk\')">I don\'t know</button>' +
+    '</div>' +
+    '<button class="back" onclick="back()">↶ Back</button>';
+}
+
+function answer(a){ answers.push({fi: current.fi, a: a}); step(); }
+function back(){
+  var last = answers.pop();
+  if (last && last.pick) return pickFeature(last.area);
+  step();
+}
+function restart(){ answers = []; step(); }
+
+function showResult(reason){
+  var r = E.result(D, answers);
+  stage.className = '';
+  stage.innerHTML = '<div class="result"><h2 class="fade">Your closest match' + (r.top.length > 1 ? 'es' : '') + '</h2>' +
+    r.top.map(function(t){
+      return '<div class="salt fade"><div class="no">' + t.salt.no + '</div><div class="nm"><b>' + esc(t.salt.name) +
+        '</b><small>' + esc(t.salt.latin) + '</small></div><div class="pc">' + Math.round(t.share * 100) + '%</div></div>';
+    }).join('') +
+    '<div class="why fade">Top salts covering ' + Math.round(r.covered * 100) + '% of the score · stopped because ' + esc(reason) + '</div>' +
+    '<button class="back" onclick="back()">↶ Back</button>' +
+    '<button class="again fade" onclick="restart()">↺ Start over</button></div>';
+}
+
+document.addEventListener('keydown', function(e){
+  if (e.key === 'h' || e.key === 'H') document.body.classList.toggle('rec');
+  if (!current || current.fi === null) return;
+  if (e.key === '1' || e.key === 'y') answer('yes');
+  if (e.key === '2' || e.key === 'n') answer('no');
+  if (e.key === '3' || e.key === 'i') answer('idk');
+});
+restart();
+</script>
+</body>
+</html>

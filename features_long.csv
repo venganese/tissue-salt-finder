@@ -1,0 +1,245 @@
+group,feature,salt_no,salt,source
+Tissue affinity,"Bone surface, tooth enamel, elastic fibres",1,Calc Fluor,A+B
+Tissue affinity,"Bones, teeth, growth, new cell formation",2,Calc Phos,A+B
+Tissue affinity,"Blood (oxygen carrier), muscle walls of vessels",3,Ferrum Phos,A+B
+Tissue affinity,Fibrin; mucous membranes; glands,4,Kali Mur,A+B
+Tissue affinity,Brain and nerves (nutrition of nerve tissue),5,Kali Phos,A+B
+Tissue affinity,Skin surface (epidermis) and linings (epithelium),6,Kali Sulph,A+B
+Tissue affinity,Nerves and muscles (contraction / spasm),7,Mag Phos,A+B
+Tissue affinity,Water distribution in tissues; mucus,8,Nat Mur,A+B
+Tissue affinity,Acid balance (lactic & uric acid); fat digestion,9,Nat Phos,A+B
+Tissue affinity,"Removal of excess water; liver, bile, kidneys",10,Nat Sulph,A+B
+Tissue affinity,"Connective tissue, skin, hair, nails",11,Silicea,A+B
+Tissue affinity,Suppuration / healing of discharging wounds,11,Silicea,A+B
+Tissue affinity,Suppuration / healing of discharging wounds,12,Calc Sulph,B only
+Inflammation stage,"1st stage: redness, heat, throbbing, fever onset, no discharge yet",3,Ferrum Phos,A+B
+Inflammation stage,"2nd stage: swelling, white/grey fibrinous exudation",4,Kali Mur,A+B
+Inflammation stage,"3rd stage: yellow discharge, peeling / desquamation",6,Kali Sulph,A+B
+Inflammation stage,Inflamed skin/tissue before pus forms (phlegmonous),9,Nat Phos,A+B
+Inflammation stage,Pus forming; abscess needs to ripen / come to a head,11,Silicea,A+B
+Inflammation stage,"Pus with an outlet; discharge goes on too long, slow to heal",12,Calc Sulph,B only
+Inflammation stage,Discharge turns foul / septic / gangrenous,5,Kali Phos,A+B
+Inflammation stage,Hard lump (induration) left behind,1,Calc Fluor,A+B
+Discharge,"Clear, watery, transparent, frothy (like raw egg-white / boiled starch)",8,Nat Mur,A+B
+Discharge,"Albuminous, like white of egg (not watery)",2,Calc Phos,A+B
+Discharge,"Thick, white, fibrinous, milky",4,Kali Mur,A+B
+Discharge,"Yellow, slimy (sometimes watery)",6,Kali Sulph,A+B
+Discharge,"Golden-yellow, creamy, honey-coloured",9,Nat Phos,A+B
+Discharge,Green / yellowish-green,6,Kali Sulph,B only
+Discharge,Green / yellowish-green,10,Nat Sulph,A+B
+Discharge,Green / yellowish-green,11,Silicea,B only
+Discharge,Thick yellow pus,9,Nat Phos,A only
+Discharge,Thick yellow pus,11,Silicea,A+B
+Discharge,Thick yellow pus,12,Calc Sulph,B only
+Discharge,"Thick, yellow, lumpy (Calc Sulph: may be blood-tinged)",1,Calc Fluor,B only
+Discharge,"Thick, yellow, lumpy (Calc Sulph: may be blood-tinged)",12,Calc Sulph,B only
+Discharge,"Foul, fetid, carrion-like smell",5,Kali Phos,A+B
+Discharge,Acrid / excoriating (burns the skin),5,Kali Phos,A+B
+Discharge,Acrid / excoriating (burns the skin),8,Nat Mur,A+B
+Discharge,Watery exudation that is yellowish,10,Nat Sulph,A+B
+Discharge,"No discharge at all (dry, red, hot)",3,Ferrum Phos,A+B
+Tongue,Clean and red / dark-red swollen,3,Ferrum Phos,A+B
+Tongue,White or greyish-white coating (not slimy),4,Kali Mur,A+B
+Tongue,"Clean & moist, or frothy bubbles of saliva along the edges",8,Nat Mur,A+B
+Tongue,"Yellow, slimy coating",6,Kali Sulph,A+B
+Tongue,"Moist, creamy, golden-yellow coating at the back",9,Nat Phos,A+B
+Tongue,"Dirty brownish-green / greyish-green, bitter taste",10,Nat Sulph,A+B
+Tongue,"Brownish, like liquid mustard; dry; offensive breath",5,Kali Phos,A+B
+Tongue,Clean tongue with stomach cramps,7,Mag Phos,A+B
+Tongue,"Clay-coloured, yellow at base, flabby",12,Calc Sulph,B only
+Tongue,"Cracked, hardened",1,Calc Fluor,A+B
+Tongue,"White-furred, swollen, numb or stiff",2,Calc Phos,B only
+Tongue,Hardened / ulcer / feels like a hair on it,11,Silicea,B only
+Tongue,Mapped tongue,4,Kali Mur,B only
+Tongue,Mapped tongue,8,Nat Mur,B only
+Pain type,Throbbing / stitching with heat & redness,3,Ferrum Phos,A+B
+Pain type,"Shooting, lightning-like, boring, cramping, constricting; changes place",7,Mag Phos,A+B
+Pain type,Pain with a paralysed / lame feeling; followed by exhaustion,5,Kali Phos,A+B
+Pain type,"Pain with numbness, coldness or crawling (ants) sensation",2,Calc Phos,A+B
+Pain type,"Shifting, wandering pains",6,Kali Sulph,B only
+Pain type,"Shifting, wandering pains",7,Mag Phos,A+B
+Pain type,"Pain with tears, salivation or vomiting of water",8,Nat Mur,A+B
+Pain type,Pain with vomiting of bile,10,Nat Sulph,A+B
+Pain type,Deep pain as if ulcerating; small nodules on scalp,11,Silicea,A+B
+Pain type,"Dragging, bearing-down pain (relaxed tissues)",1,Calc Fluor,B only
+Worse from,Motion,2,Calc Phos,B only
+Worse from,Motion,3,Ferrum Phos,A+B
+Worse from,Motion,4,Kali Mur,A+B
+Worse from,Light touch,7,Mag Phos,A+B
+Worse from,"Cold, cold air, draughts, cold washing",2,Calc Phos,B only
+Worse from,"Cold, cold air, draughts, cold washing",7,Mag Phos,B only
+Worse from,"Cold, cold air, draughts, cold washing",11,Silicea,B only
+Worse from,Warm / heated room,6,Kali Sulph,A+B
+Worse from,"Rest, rising from sitting, beginning to move, exertion",5,Kali Phos,A+B
+Worse from,Noise,5,Kali Phos,B only
+Worse from,Noise,11,Silicea,B only
+Worse from,Being alone,5,Kali Phos,B only
+Worse from,"Damp, wet weather; living near water / damp houses",1,Calc Fluor,B only
+Worse from,"Damp, wet weather; living near water / damp houses",10,Nat Sulph,A+B
+Worse from,Getting wet; change of weather,2,Calc Phos,B only
+Worse from,Working / washing in water,10,Nat Sulph,B only
+Worse from,Working / washing in water,12,Calc Sulph,B only
+Worse from,Sea-side; cold weather,8,Nat Mur,B only
+Worse from,Thunderstorm,9,Nat Phos,B only
+Worse from,"Fatty or rich food, pastry",4,Kali Mur,B only
+Worse from,"Fatty or rich food, pastry",9,Nat Phos,A+B
+Worse from,Chilled feet / suppressed foot-sweat,11,Silicea,A+B
+Worse from,Lying on left side,10,Nat Sulph,B only
+Worse from,Consolation,8,Nat Mur,B only
+Better from,Cold applications / cold drinks,3,Ferrum Phos,A+B
+Better from,"Warmth, heat, hot drinks",7,Mag Phos,A+B
+Better from,"Warmth, heat, hot drinks",11,Silicea,B only
+Better from,"Pressure, bending double, rubbing",7,Mag Phos,A+B
+Better from,"Cool, open air",6,Kali Sulph,A+B
+Better from,Gentle motion; eating; company; pleasant excitement,5,Kali Phos,A+B
+Better from,Lying down,2,Calc Phos,B only
+Better from,Lying on something hard (backache),8,Nat Mur,B only
+Better from,"Warm, dry weather",10,Nat Sulph,B only
+Better from,Wrapping up warmly (esp. the head),11,Silicea,B only
+Better from,Sleep,3,Ferrum Phos,B only
+Time & side,Worse in the evening,6,Kali Sulph,A+B
+Time & side,Worse in the evening,9,Nat Phos,B only
+Time & side,Worse in the morning,8,Nat Mur,B only
+Time & side,Worse at night,2,Calc Phos,A+B
+Time & side,Worse at night,11,Silicea,B only
+Time & side,Comes at set times / periodical,8,Nat Mur,A+B
+Time & side,Right-sided complaints,7,Mag Phos,B only
+Time & side,Worse at full moon,11,Silicea,B only
+Mind & mood,"Nervous exhaustion, brain-fag, poor memory",5,Kali Phos,A+B
+Mind & mood,"Nervous exhaustion, brain-fag, poor memory",8,Nat Mur,B only
+Mind & mood,"Nervous exhaustion, brain-fag, poor memory",11,Silicea,B only
+Mind & mood,"Anxious, fearful, weepy, homesick, suspicious, shy",5,Kali Phos,A+B
+Mind & mood,Depressed; groundless fear of money troubles; indecisive,1,Calc Fluor,B only
+Mind & mood,"Peevish, fretful (children); after grief or disappointment",2,Calc Phos,B only
+Mind & mood,Trifles seem like mountains; indifferent,3,Ferrum Phos,B only
+Mind & mood,Imagines he must starve,4,Kali Mur,B only
+Mind & mood,"Fear of falling; sad, anxious",6,Kali Sulph,A+B
+Mind & mood,"Forgetful, dull; complains constantly about the pain",7,Mag Phos,B only
+Mind & mood,"Hopeless, sad, weepy; worse from consolation",8,Nat Mur,A+B
+Mind & mood,Apprehensive; irritable over trifles,9,Nat Phos,B only
+Mind & mood,"Low, irritable from 'biliousness'; worse from sad music",10,Nat Sulph,B only
+Mind & mood,"Can't concentrate, tires easily, oversensitive",11,Silicea,B only
+Mind & mood,Changeable mood,5,Kali Phos,B only
+Mind & mood,Changeable mood,12,Calc Sulph,B only
+General picture,"Watery, puffy face; tired, sleepy, chilly; craves salt",8,Nat Mur,A+B
+General picture,"Pale, sensitive, irritable, easily exhausted",5,Kali Phos,A+B
+General picture,"Thin, anaemic, slow growth; craves salty/smoked meats",2,Calc Phos,A+B
+General picture,"Flushed, florid face",3,Ferrum Phos,B only
+General picture,"Lean, nervous, tired, can't sit up; craves sugar",7,Mag Phos,B only
+General picture,Feels the damp; sallow / jaundiced; bilious,10,Nat Sulph,A+B
+General picture,"Chilly, poorly nourished, sweaty head, offensive foot-sweat",11,Silicea,A+B
+General picture,"Relaxed, sagging tissues",1,Calc Fluor,A+B
+General picture,Sour smell / sour symptoms everywhere,9,Nat Phos,A+B
+General picture,Thirst for cold water,3,Ferrum Phos,B only
+General picture,"Craves fruit, sour green vegetables",12,Calc Sulph,B only
+Digestion,Vomits undigested food,3,Ferrum Phos,A+B
+Digestion,Vomits bile; bitter taste,10,Nat Sulph,A+B
+Digestion,Vomits clear water or stringy mucus; water-brash,8,Nat Mur,A+B
+Digestion,Retches up white mucus,4,Kali Mur,A+B
+Digestion,"Sour burps, heartburn, sour or curdled vomit",9,Nat Phos,A+B
+Digestion,"Cramping colic, better with heat & bending double; burping no relief",7,Mag Phos,A+B
+Digestion,Pressure / fullness in stomach with yellow tongue,6,Kali Sulph,A+B
+Digestion,Flatulent colic with constipation,10,Nat Sulph,A+B
+Digestion,Nervous 'gone' feeling; stomach ache from fright,5,Kali Phos,B only
+Digestion,Stomach pain eased by eating / colic each time child feeds,2,Calc Phos,B only
+Digestion,Indigestion after fatty food,4,Kali Mur,B only
+Digestion,Indigestion after fatty food,9,Nat Phos,A+B
+Stool,"Watery, mucous diarrhoea",8,Nat Mur,A+B
+Stool,"Carrion-smelling, putrid",5,Kali Phos,A+B
+Stool,"Carrion-smelling, putrid",11,Silicea,B only
+Stool,"Watery-bilious, green",10,Nat Sulph,A+B
+Stool,"Bloody-mucous; or pale, clay-coloured",4,Kali Mur,A+B
+Stool,"Sour-smelling, green",9,Nat Phos,A+B
+Stool,Undigested,3,Ferrum Phos,A+B
+Stool,"Watery, with cramping colic before each stool",7,Mag Phos,A+B
+Stool,Purulent,9,Nat Phos,A only
+Stool,Purulent,11,Silicea,A only
+Stool,Purulent,12,Calc Sulph,B only
+Stool,"Dry, hard, crumbling constipation",8,Nat Mur,B only
+Stool,Stool slips back after partly expelled,11,Silicea,B only
+Stool,"Green, slimy, hot, sputtering; worse fruit",2,Calc Phos,B only
+Skin: blisters,"Clear, watery contents",8,Nat Mur,A+B
+Skin: blisters,Thick white (fibrinous) contents,4,Kali Mur,A+B
+Skin: blisters,Albuminous contents,2,Calc Phos,A only
+Skin: blisters,Honey-yellow contents,9,Nat Phos,A+B
+Skin: blisters,Yellowish-watery contents,10,Nat Sulph,A+B
+Skin: blisters,Pus-like contents,9,Nat Phos,A only
+Skin: blisters,Pus-like contents,11,Silicea,A only
+Skin: blisters,"Bloody, foul contents",5,Kali Phos,A+B
+Skin: crusts,"Mealy, flour-like scurf",4,Kali Mur,A+B
+Skin: crusts,Yellowish-white crusts,2,Calc Phos,A+B
+Skin: crusts,White scales,8,Nat Mur,A+B
+Skin: crusts,Honey-yellow crusts,9,Nat Phos,A+B
+Skin: crusts,Yellowish scales,10,Nat Sulph,A+B
+Skin: crusts,"Yellow, purulent crusts",11,Silicea,A only
+Skin: crusts,"Yellow, purulent crusts",12,Calc Sulph,B only
+Skin: crusts,"Greasy, foul-smelling crusts",5,Kali Phos,A+B
+Skin: crusts,Profuse peeling on a sticky base,6,Kali Sulph,A+B
+Skin: crusts,Hard skin on palms with cracks,1,Calc Fluor,A+B
+Skin: other,"Cracks, chaps, fissures",1,Calc Fluor,A+B
+Skin: other,Itching,2,Calc Phos,B only
+Skin: other,Itching,5,Kali Phos,B only
+Skin: other,Itching,7,Mag Phos,A only
+Skin: other,Hives / nettle-rash,5,Kali Phos,A only
+Skin: other,Hives / nettle-rash,8,Nat Mur,B only
+Skin: other,"Boils, abscesses",11,Silicea,A+B
+Skin: other,"Boils, abscesses",12,Calc Sulph,B only
+Skin: other,"Brittle nails, white spots, ingrowing nails",11,Silicea,A+B
+Skin: other,Warts,4,Kali Mur,A+B
+Skin: other,Warts,8,Nat Mur,B only
+Skin: other,Warts,10,Nat Sulph,A+B
+Skin: other,Burns that blister,4,Kali Mur,A+B
+Skin: other,Burns that blister,8,Nat Mur,A only
+Skin: other,Insect stings,8,Nat Mur,A+B
+Skin: other,Chilblains,4,Kali Mur,B only
+Skin: other,Chilblains,5,Kali Phos,B only
+Skin: other,Chilblains,10,Nat Sulph,A only
+Skin: other,Chilblains,11,Silicea,B only
+Skin: other,Chilblains,12,Calc Sulph,B only
+Skin: other,Hair loss / bald patches,5,Kali Phos,A+B
+Skin: other,Hair loss / bald patches,6,Kali Sulph,B only
+Skin: other,Hair loss / bald patches,8,Nat Mur,A+B
+Skin: other,Hair loss / bald patches,11,Silicea,B only
+Skin: other,Dandruff,4,Kali Mur,B only
+Skin: other,Dandruff,6,Kali Sulph,B only
+Skin: other,Dandruff,7,Mag Phos,B only
+Skin: other,Dandruff,8,Nat Mur,B only
+Bleeding,"Bright red, clots easily",3,Ferrum Phos,A+B
+Bleeding,"Dark, thick, sticky, clotted",4,Kali Mur,A+B
+Bleeding,"Thin, watery, does not clot",5,Kali Phos,A+B
+Bleeding,"Thin, watery, does not clot",8,Nat Mur,A+B
+Bleeding,Nosebleeds in children,3,Ferrum Phos,A+B
+Fever,Start of any fever; chilly stage; quick pulse,3,Ferrum Phos,A+B
+Fever,"Exhausted, stuporous fever; dry brown tongue",5,Kali Phos,A+B
+Fever,Drowsy fever with watery vomiting,8,Nat Mur,A+B
+Fever,Recurring (intermittent) fever,8,Nat Mur,A+B
+Fever,Recurring (intermittent) fever,10,Nat Sulph,A+B
+Fever,Temperature rises in the evening; helps sweating,6,Kali Sulph,B only
+Fever,Fever while pus is forming (hectic),11,Silicea,B only
+Fever,Fever while pus is forming (hectic),12,Calc Sulph,B only
+Fever,Influenza,10,Nat Sulph,A+B
+Nerves & sleep,"Cramps, spasms, hiccough, writer's cramp",7,Mag Phos,A+B
+Nerves & sleep,Convulsions with fever (teething),3,Ferrum Phos,A+B
+Nerves & sleep,"Spasms in anaemic, weak children",2,Calc Phos,A+B
+Nerves & sleep,"Weakness, paralysis, nervous collapse",5,Kali Phos,A+B
+Nerves & sleep,"Numbness, pins & needles",2,Calc Phos,A+B
+Nerves & sleep,"Numbness, pins & needles",8,Nat Mur,B only
+Nerves & sleep,Sleepless from worry or excitement,5,Kali Phos,B only
+Nerves & sleep,"Sleepy, unrefreshed on waking",8,Nat Mur,A+B
+Nerves & sleep,Attacks at night,11,Silicea,A+B
+Structure,"Slow bone growth, fractures slow to knit, late teeth, open fontanelles",2,Calc Phos,A+B
+Structure,Hard knobby bone growths; stony-hard lumps,1,Calc Fluor,A+B
+Structure,"Loose teeth, rough enamel",1,Calc Fluor,A+B
+Structure,"Varicose veins, piles, sagging / prolapse",1,Calc Fluor,A+B
+Structure,Bone inflammation tending to pus,11,Silicea,A+B
+Structure,"Glands swollen, soft",4,Kali Mur,B only
+Structure,"Glands swollen, soft",9,Nat Phos,A+B
+Structure,"Glands swollen, stony hard",1,Calc Fluor,A+B
+Structure,Glands suppurating,11,Silicea,A+B
+Structure,Glands suppurating,12,Calc Sulph,B only
+Structure,Joint / gout pains from uric acid,9,Nat Phos,A+B
+Structure,Joint / gout pains from uric acid,10,Nat Sulph,B only
+Structure,Joint / gout pains from uric acid,11,Silicea,A+B
+Structure,Fluid in joints / sacs (e.g. knee),2,Calc Phos,A+B
+Structure,Fluid in joints / sacs (e.g. knee),8,Nat Mur,A only
+Structure,Fluid in joints / sacs (e.g. knee),11,Silicea,A+B

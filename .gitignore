@@ -1,0 +1,7 @@
+# Source books (not needed by the site)
+*.pdf
+# Earlier multi-option tree output, not used by the finder
+tree.json
+# Local tool settings
+.claude/
+__pycache__/
