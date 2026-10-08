@@ -16,7 +16,10 @@ html,body{height:100%}
 body{background:#222;font-family:Inter,system-ui,sans-serif;color:var(--ink);
   display:flex;align-items:center;justify-content:center}
 /* 9:16 reel frame */
-.frame{position:relative;height:100vh;aspect-ratio:9/16;max-width:100vw;background:var(--bg);
+.frame{position:relative;height:100vh;aspect-ratio:9/16;max-width:100vw;background-color:var(--bg);
+  background-image:linear-gradient(rgba(31,42,36,.055) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(31,42,36,.055) 1px,transparent 1px);
+  background-size:12px 12px;background-position:-1px -1px;
   overflow:hidden;display:flex;flex-direction:column;padding:5% 7% 4%}
 .frame::before{content:"";position:absolute;inset:0;pointer-events:none;
   background:radial-gradient(circle at 85% 8%,#e8d9b8 0,transparent 40%),
@@ -38,12 +41,26 @@ main{flex:1;display:flex;flex-direction:column;justify-content:center}
 .btn.yes{background:var(--accent);color:#fff;border-color:var(--accent)}
 .btn.no{color:var(--no);border-color:#e2c4bd}
 .btn.idk{color:var(--muted)}
-.back{all:unset;cursor:pointer;margin:2vh auto 0;color:var(--muted);font-size:clamp(11px,1.5vh,14px);border-bottom:1px solid}
+.back{all:unset;cursor:pointer;display:block;width:fit-content;margin:2vh auto 0;color:var(--muted);font-size:clamp(11px,1.5vh,14px);border-bottom:1px solid}
 .back[hidden]{display:none}
 /* starting pick: scroll through groups, then features */
 .pick-h{text-align:center;font-family:Fraunces,serif;font-weight:600;font-size:clamp(18px,2.8vh,28px);margin-bottom:.6vh}
 .pick-sub{text-align:center;color:var(--muted);font-size:clamp(11px,1.5vh,14px);margin-bottom:1.6vh}
-.list{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:.9vh;padding:2px 2px 1vh;min-height:0}
+.list{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:.9vh;padding:2px 2px 1vh;min-height:0;
+  --ft:0px;--fb:0px;transition:--ft .2s,--fb .2s;
+  -webkit-mask-image:linear-gradient(to bottom,transparent 0,#000 var(--ft),#000 calc(100% - var(--fb)),transparent 100%);
+          mask-image:linear-gradient(to bottom,transparent 0,#000 var(--ft),#000 calc(100% - var(--fb)),transparent 100%)}
+/* scrollbar: only a slim thumb, no track and no arrow buttons */
+.list::-webkit-scrollbar{width:4px;background:transparent}
+.list::-webkit-scrollbar-track{background:transparent}
+.list::-webkit-scrollbar-button{display:none;height:0}
+.list::-webkit-scrollbar-thumb{background:rgba(201,130,43,.6);border-radius:4px}
+.list::-webkit-scrollbar-thumb:hover{background:var(--accent-2)}
+@supports (-moz-appearance:none){.list{scrollbar-width:thin;scrollbar-color:rgba(201,130,43,.6) transparent}}
+/* fade an edge only while there is more list beyond it */
+.list.more-up{--ft:5vh} .list.more-down{--fb:5vh}
+@property --ft{syntax:"<length>";inherits:false;initial-value:0px}
+@property --fb{syntax:"<length>";inherits:false;initial-value:0px}
 .item{all:unset;cursor:pointer;background:var(--card);border:1.5px solid var(--line);border-radius:14px;
   padding:1.2vh 4%;font-size:clamp(13px,1.9vh,18px);font-weight:500;display:flex;justify-content:space-between;gap:8px}
 .item:hover{border-color:var(--accent)}
@@ -51,7 +68,30 @@ main{flex:1;display:flex;flex-direction:column;justify-content:center}
 .sub{font-size:clamp(10px,1.3vh,12px);letter-spacing:.08em;text-transform:uppercase;color:var(--accent-2);font-weight:600;margin:.8vh 2px 0}
 .picked{text-align:center;font-size:clamp(10px,1.4vh,13px);color:var(--muted);margin-top:-1vh;margin-bottom:1.6vh}
 .picked b{color:var(--accent)}
-main.picking{justify-content:flex-start;min-height:0}
+main.picking{justify-content:flex-start;min-height:0;overflow:hidden;margin-bottom:1vh}
+/* area carousel: centred card is the selected area */
+.carousel{position:relative;flex:none;margin:0 -7.8% .6vh;container-type:inline-size}
+.cards{position:relative;display:flex;gap:12px;overflow-x:auto;scroll-snap-type:x mandatory;
+  padding:6px 28cqw 1vh;scrollbar-width:none}
+.cards::-webkit-scrollbar{display:none}
+.card{all:unset;cursor:pointer;flex:none;width:44cqw;scroll-snap-align:center;background:var(--card);
+  border:1.5px solid var(--line);border-radius:18px;padding:1.4vh 3%;display:flex;flex-direction:column;
+  align-items:center;gap:.5vh;text-align:center;box-sizing:border-box;
+  transform:scale(.82);opacity:.5;transition:transform .25s ease,opacity .25s ease,background .2s,border-color .2s}
+.card .ic{font-size:clamp(22px,3.4vh,34px)}
+.card b{font-size:clamp(11px,1.6vh,15px);font-weight:600;line-height:1.15;min-height:2.3em;display:flex;align-items:center}
+.card small{font-size:clamp(9px,1.2vh,12px);color:var(--muted);font-weight:600}
+.card.on{background:var(--accent);border-color:var(--accent);color:#fff;transform:scale(1);opacity:1;
+  box-shadow:0 6px 16px rgba(47,107,79,.25)}
+.card.on small{color:#d6e4d6}
+.nav{all:unset;cursor:pointer;position:absolute;top:50%;transform:translateY(-60%);z-index:2;width:4.2vh;height:4.2vh;
+  border-radius:50%;background:var(--card);border:1px solid var(--line);color:var(--accent);font-size:2.6vh;
+  display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,.08)}
+.nav.prev{left:3%} .nav.next{right:3%}
+.nav[disabled]{opacity:.3;cursor:default}
+.dots{display:flex;justify-content:center;gap:5px;margin-bottom:1.2vh;flex:none}
+.dots i{width:6px;height:6px;border-radius:50%;background:var(--line);transition:all .2s;cursor:pointer}
+.dots i.on{width:16px;border-radius:3px;background:var(--accent)}
 /* live score bars */
 .bars{display:grid;grid-template-columns:repeat(12,1fr);gap:4px;align-items:end;height:9vh;margin:1.5vh 0 .5vh}
 .bar{display:flex;flex-direction:column;justify-content:flex-end;height:100%}
@@ -72,13 +112,22 @@ footer{text-align:center;font-size:clamp(9px,1.3vh,12px);color:var(--muted);line
 footer strong{color:var(--ink)}
 .fade{animation:fade .35s ease both}
 @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
-body.rec .ctrl{display:none}
-.ctrl{position:fixed;left:12px;bottom:12px;display:flex;gap:6px}
-.ctrl button{font:600 12px Inter,sans-serif;padding:6px 10px;border-radius:8px;border:0;background:#fff;cursor:pointer}
+.restart{all:unset;cursor:pointer;position:absolute;top:2.2vh;right:4.5%;z-index:3;width:4.4vh;height:4.4vh;
+  border-radius:50%;background:var(--card);border:1px solid var(--line);color:var(--accent);
+  display:flex;align-items:center;justify-content:center;box-shadow:0 2px 6px rgba(0,0,0,.06);transition:transform .3s}
+.restart:hover{transform:rotate(-90deg)}
+.restart svg{width:55%;height:55%}
+body.rec .restart{display:none}
+.dl{all:unset;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;margin:2vh auto 0;
+  padding:1.1vh 5%;border-radius:999px;background:var(--accent-2);color:#fff;font-weight:600;font-size:clamp(12px,1.8vh,16px)}
+.dl svg{width:2.2vh;height:2.2vh}
 </style>
 </head>
 <body>
 <div class="frame">
+  <button class="restart" onclick="restart()" title="Start over" aria-label="Start over">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M3 12a9 9 0 1 0 3-6.7"/><path d="M3 4v5h5"/></svg></button>
   <header>
     <div class="kicker">The 12 Schüssler Tissue Salts</div>
     <h1>Which cell salt<br>matches you?</h1>
@@ -88,10 +137,6 @@ body.rec .ctrl{display:none}
   <main id="stage"></main>
   <footer>Traditional biochemic reference, for information only, <strong>not medical advice</strong>.<br>
   Ask a qualified practitioner about potency &amp; dosage, and see a doctor for anything serious.</footer>
-</div>
-<div class="ctrl">
-  <button onclick="restart()">Restart</button>
-  <button onclick="document.body.classList.add('rec')">Hide (H)</button>
 </div>
 
 <script src="features.js"></script>
@@ -119,19 +164,81 @@ var AREAS = D.areas;
 function inArea(ai){ return D.features.map(function(f, fi){ return fi; })
   .filter(function(fi){ return D.features[fi].areas.indexOf(AREAS[ai]) !== -1; }); }
 
-function pickGroup(){
+var AREA_ICONS = {
+  "Inflammation & pus": "🔥", "Discharge & mucus": "🤧", "Fever": "🌡️", "Pain": "⚡",
+  "Digestion & appetite": "🍽️", "Stool & bowels": "🚽", "Mouth, tongue & teeth": "👅", "Skin": "🩹",
+  "Bones, joints & muscles": "🦴", "Veins & glands": "🫀", "Bleeding": "🩸", "Nerves & sleep": "🧠",
+  "Mind & mood": "💭", "General picture": "🧍", "Children": "🧒", "Worse from": "⬇️",
+  "Better from": "⬆️", "Time & side": "🕒"
+};
+
+// Start screen: a carousel of areas; the centred card's features scroll below
+var areaNow = 0, settle = null, steerTo = null, steerTimer = null;
+
+function pickGroup(ai){
+  areaNow = ai || 0;
   current = null;
   drawBars();
   stage.className = 'picking';
   stage.innerHTML = '<div class="pick-h fade">What is present?</div>' +
-    '<div class="pick-sub fade">Choose an area, then one feature you are sure of</div>' +
-    '<div class="list">' + AREAS.map(function(a, ai){
-      return '<button class="item fade" onclick="pickFeature(' + ai + ')">' + esc(a) + '<small>' + inArea(ai).length + ' ›</small></button>';
-    }).join('') + '</div>';
+    '<div class="pick-sub fade">Swipe to an area, then tap one feature you are sure of</div>' +
+    '<div class="carousel fade"><button class="nav prev" onclick="moveArea(-1)" aria-label="Previous area">‹</button>' +
+    '<div class="cards" id="cards">' + AREAS.map(function(a, i){
+      return '<button class="card" data-ai="' + i + '" onclick="showArea(' + i + ')"><span class="ic">' +
+        (AREA_ICONS[a] || '•') + '</span><b>' + esc(a) + '</b><small>' + inArea(i).length + ' features</small></button>';
+    }).join('') + '</div>' +
+    '<button class="nav next" onclick="moveArea(1)" aria-label="Next area">›</button></div>' +
+    '<div class="dots" id="dots">' + AREAS.map(function(a, i){
+      return '<i data-ai="' + i + '" onclick="showArea(' + i + ')" title="' + esc(a) + '"></i>';
+    }).join('') + '</div>' +
+    '<div class="list" id="list"></div>';
+  var cards = document.getElementById('cards');
+  centre(areaNow, false);
+  cards.addEventListener('scroll', onSwipe, {passive: true});
+  showArea(areaNow, true);
+}
+var pickFeature = pickGroup;  // Back from the first question returns here
+
+function centre(ai, smooth){
+  var cards = document.getElementById('cards'), c = cards.children[ai];
+  cards.scrollTo({left: c.offsetLeft - (cards.clientWidth - c.offsetWidth) / 2, behavior: smooth ? 'smooth' : 'auto'});
+}
+
+function moveArea(d){ showArea(Math.max(0, Math.min(AREAS.length - 1, areaNow + d))); }
+
+// While swiping, highlight the card nearest the centre; load its list once the swipe settles
+function onSwipe(){
+  var cards = document.getElementById('cards'), mid = cards.scrollLeft + cards.clientWidth / 2, best = 0, dist = 1e9;
+  for (var i = 0; i < cards.children.length; i++) {
+    var c = cards.children[i], d = Math.abs(c.offsetLeft + c.offsetWidth / 2 - mid);
+    if (d < dist) { dist = d; best = i; }
+  }
+  mark(best);
+  clearTimeout(settle);
+  if (steerTo !== null) {          // gliding to a tapped card: don't load cards passed on the way
+    if (best === steerTo) settle = setTimeout(function(){ steerTo = null; }, 140);
+    return;
+  }
+  settle = setTimeout(function(){ if (best !== areaNow) showArea(best, true); }, 140);
+}
+
+function mark(ai){
+  document.querySelectorAll('#cards .card').forEach(function(c){ c.classList.toggle('on', +c.dataset.ai === ai); });
+  document.querySelectorAll('#dots i').forEach(function(d){ d.classList.toggle('on', +d.dataset.ai === ai); });
+  document.querySelector('.nav.prev').disabled = ai === 0;
+  document.querySelector('.nav.next').disabled = ai === AREAS.length - 1;
 }
 
 // Feature list for one area, sub-headed by each feature's own group
-function pickFeature(ai){
+function showArea(ai, fromSwipe){
+  areaNow = ai;
+  mark(ai);
+  if (!fromSwipe) {
+    steerTo = ai;
+    clearTimeout(steerTimer);
+    steerTimer = setTimeout(function(){ steerTo = null; }, 1500);  // safety if the glide is interrupted
+    centre(ai, true);
+  }
   var html = '', last = null;
   inArea(ai).sort(function(x, y){
     var gx = D.features[x].group, gy = D.features[y].group;
@@ -142,11 +249,16 @@ function pickFeature(ai){
     if (f.group !== last) { html += '<div class="sub">' + esc(f.group) + '</div>'; last = f.group; }
     html += '<button class="item fade" onclick="start(' + fi + ',' + ai + ')">' + esc(f.feature) + '</button>';
   });
-  stage.className = 'picking';
-  stage.innerHTML = '<div class="pick-h fade">' + esc(AREAS[ai]) + '</div>' +
-    '<div class="pick-sub fade">Tap the feature that is present</div>' +
-    '<div class="list">' + html + '</div>' +
-    '<button class="back" onclick="pickGroup()">↶ All areas</button>';
+  var list = document.getElementById('list');
+  list.innerHTML = html;
+  list.scrollTop = 0;
+  list.onscroll = function(){ edgeFade(list); };
+  edgeFade(list);
+}
+
+function edgeFade(list){
+  list.classList.toggle('more-up', list.scrollTop > 2);
+  list.classList.toggle('more-down', list.scrollTop + list.clientHeight < list.scrollHeight - 2);
 }
 
 function start(fi, ai){ answers = [{fi: fi, a: 'yes', pick: true, area: ai}]; step(); }
@@ -178,7 +290,10 @@ function back(){
 }
 function restart(){ answers = []; step(); }
 
+var lastReason = '';
+
 function showResult(reason){
+  lastReason = reason;
   var r = E.result(D, answers);
   stage.className = '';
   stage.innerHTML = '<div class="result"><h2 class="fade">Your closest match' + (r.top.length > 1 ? 'es' : '') + '</h2>' +
@@ -187,12 +302,103 @@ function showResult(reason){
         '</b><small>' + esc(t.salt.latin) + '</small></div><div class="pc">' + Math.round(t.share * 100) + '%</div></div>';
     }).join('') +
     '<div class="why fade">Top salts covering ' + Math.round(r.covered * 100) + '% of the score · stopped because ' + esc(reason) + '</div>' +
+    '<button class="dl fade" onclick="downloadPath()"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" ' +
+      'stroke-linecap="round" stroke-linejoin="round"><path d="M12 3v12"/><path d="M7 10l5 5 5-5"/><path d="M4 20h16"/></svg>Download this path</button>' +
     '<button class="back" onclick="back()">↶ Back</button>' +
     '<button class="again fade" onclick="restart()">↺ Start over</button></div>';
 }
 
+var ANSWER_TEXT = {yes: 'Have this', no: "Don't have this", idk: "I don't know"};
+
+// Self-contained HTML record of the session: the pick, every question and answer, and the result
+function downloadPath(){
+  var now = new Date(), pad = function(n){ return (n < 10 ? '0' : '') + n; };
+  var stamp = now.getFullYear() + '-' + pad(now.getMonth() + 1) + '-' + pad(now.getDate()) + ' ' + pad(now.getHours()) + ':' + pad(now.getMinutes());
+  var r = E.result(D, answers), idk = answers.length - E.answeredCount(answers);
+
+  var steps = answers.map(function(a, i){
+    var f = D.features[a.fi], post = E.posterior(D, answers.slice(0, i + 1));
+    var lead = post.indexOf(Math.max.apply(null, post));
+    var label = a.pick ? 'Starting pick · ' + esc(AREAS[a.area]) : 'Q' + (i + 1) + ' · ' + esc(f.group);
+    var ans = a.pick ? 'Present' : ANSWER_TEXT[a.a];
+    return '<li class="step a-' + (a.pick ? 'pick' : a.a) + '"><div class="lbl">' + label + '</div>' +
+      '<div class="feat">' + esc(f.feature) + '</div>' +
+      '<div class="row"><span class="ans">' + esc(ans) + '</span><span class="lead">Leading: ' +
+      esc(D.salts[lead].name) + ' ' + Math.round(post[lead] * 100) + '%</span></div></li>';
+  }).join('');
+
+  var top = r.top.map(function(t){
+    return '<div class="salt"><div class="num">' + t.salt.no + '</div><div class="nm"><b>' + esc(t.salt.name) +
+      '</b><small>' + esc(t.salt.latin) + '</small></div><div class="pc">' + Math.round(t.share * 100) + '%</div></div>';
+  }).join('');
+
+  var max = r.ranked[0].share;
+  var rank = r.ranked.map(function(t){
+    return '<tr><td>' + t.salt.no + '</td><td>' + esc(t.salt.name) + '</td><td class="bar"><i style="width:' +
+      Math.max(1, t.share / max * 100).toFixed(1) + '%"></i></td><td class="v">' + (t.share * 100).toFixed(1) + '%</td></tr>';
+  }).join('');
+
+  var html = '<!doctype html><html lang="en"><head><meta charset="utf-8">' +
+    '<meta name="viewport" content="width=device-width, initial-scale=1"><title>Tissue Salt Path · ' + stamp + '</title><style>' +
+    ':root{--bg:#f6f1e7;--card:#fffdf8;--ink:#1f2a24;--muted:#6b7068;--accent:#2f6b4f;--accent-2:#c9822b;--line:#e3dccd;--no:#a14a3b}' +
+    '*{box-sizing:border-box;margin:0;padding:0}' +
+    'body{background-color:var(--bg);color:var(--ink);font:15px/1.45 Inter,system-ui,sans-serif;padding:32px 16px;' +
+    'background-image:linear-gradient(rgba(31,42,36,.055) 1px,transparent 1px),linear-gradient(90deg,rgba(31,42,36,.055) 1px,transparent 1px);background-size:12px 12px}' +
+    '.wrap{max-width:620px;margin:0 auto}' +
+    '.kicker{font-size:12px;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);font-weight:600}' +
+    'h1{font-family:Georgia,serif;font-size:30px;line-height:1.1;margin:6px 0 4px}' +
+    '.date{color:var(--muted);font-size:13px;margin-bottom:24px}' +
+    'h2{font-family:Georgia,serif;font-size:20px;margin:28px 0 12px}' +
+    '.salt{display:flex;align-items:center;gap:14px;background:var(--card);border:1.5px solid var(--line);border-radius:16px;padding:12px 16px;margin-bottom:10px}' +
+    '.num{flex:none;width:44px;height:44px;border-radius:50%;background:var(--accent);color:#fff;display:flex;align-items:center;justify-content:center;font:700 19px Georgia,serif}' +
+    '.nm{flex:1}.nm b{display:block;font:700 20px Georgia,serif}.nm small{color:var(--muted)}' +
+    '.pc{font-weight:700;font-size:20px;color:var(--accent)}' +
+    '.note{color:var(--muted);font-size:13px}' +
+    'ol{list-style:none;border-left:2px solid var(--line);margin-left:8px}' +
+    '.step{position:relative;padding:0 0 16px 20px}' +
+    '.step:before{content:"";position:absolute;left:-7px;top:4px;width:12px;height:12px;border-radius:50%;background:var(--muted)}' +
+    '.a-pick:before,.a-yes:before{background:var(--accent)}.a-no:before{background:var(--no)}.a-idk:before{background:var(--line)}' +
+    '.lbl{font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--accent-2);font-weight:600}' +
+    '.feat{font-weight:600;margin:2px 0 4px}' +
+    '.row{display:flex;gap:10px;flex-wrap:wrap;font-size:13px}' +
+    '.ans{padding:1px 10px;border-radius:999px;background:var(--card);border:1px solid var(--line);font-weight:600}' +
+    '.a-yes .ans,.a-pick .ans{color:var(--accent)}.a-no .ans{color:var(--no)}.a-idk .ans{color:var(--muted)}' +
+    '.lead{color:var(--muted)}' +
+    'table{width:100%;border-collapse:collapse;background:var(--card);border:1px solid var(--line);border-radius:12px;overflow:hidden}' +
+    'td{padding:6px 10px;border-bottom:1px solid var(--line);font-size:14px}td:first-child{color:var(--muted);width:32px}' +
+    'td.bar{width:45%}td.bar i{display:block;height:8px;border-radius:4px;background:var(--accent)}td.v{text-align:right;width:70px}' +
+    'footer{margin-top:28px;padding-top:14px;border-top:1px solid var(--line);color:var(--muted);font-size:12px}' +
+    'footer strong{color:var(--ink)}' +
+    '@media print{body{background:#fff;padding:0}}' +
+    '</style></head><body><div class="wrap">' +
+    '<div class="kicker">The 12 Schüssler Tissue Salts</div><h1>Session path</h1>' +
+    '<div class="date">' + stamp + ' · ' + E.answeredCount(answers) + ' questions answered (limit ' + (E.DEFAULTS.maxDepth + idk) +
+      (idk ? ', with ' + idk + ' “I don\'t know”' : '') + ')</div>' +
+    '<h2>Closest match' + (r.top.length > 1 ? 'es' : '') + '</h2>' + top +
+    '<p class="note">Top salts covering ' + Math.round(r.covered * 100) + '% of the score. Stopped because ' + esc(lastReason) + '.</p>' +
+    '<h2>Path</h2><ol>' + steps + '</ol>' +
+    '<h2>Full ranking</h2><table>' + rank + '</table>' +
+    '<footer>Sources: Schüssler, <i>An Abridged Therapy</i> (25th ed.); Boericke &amp; Dewey, <i>The Twelve Tissue Remedies</i>.<br>' +
+    'Traditional biochemic reference, for information only, <strong>not medical advice</strong>. ' +
+    'Ask a qualified practitioner about potency &amp; dosage, and see a doctor for anything serious.</footer>' +
+    '</div></body></html>';
+
+  var blob = new Blob([html], {type: 'text/html;charset=utf-8'});
+  var link = document.createElement('a');
+  link.href = URL.createObjectURL(blob);
+  link.download = 'tissue-salt-path-' + stamp.replace(/[ :]/g, '-') + '.html';
+  document.body.appendChild(link); link.click(); link.remove();
+  setTimeout(function(){ URL.revokeObjectURL(link.href); }, 1000);
+}
+
+
 document.addEventListener('keydown', function(e){
   if (e.key === 'h' || e.key === 'H') document.body.classList.toggle('rec');
+  if (stage.className === 'picking') {
+    if (e.key === 'ArrowLeft') moveArea(-1);
+    if (e.key === 'ArrowRight') moveArea(1);
+    return;
+  }
   if (!current || current.fi === null) return;
   if (e.key === '1' || e.key === 'y') answer('yes');
   if (e.key === '2' || e.key === 'n') answer('no');

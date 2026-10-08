@@ -3,7 +3,7 @@
 An interactive finder for the 12 Schüssler tissue salts. You pick one feature that is present, then answer
 **Have this / Don't have this / I don't know** questions until the closest matching salts emerge.
 
-**Live page:** `https://<your-username>.github.io/<repo-name>/`
+**Live page:** https://venganese.github.io/tissue-salt-finder/
 
 > **Not medical advice.** This is a traditional biochemic reference made for education and entertainment.
 > It says nothing about potency, dosage or repetition. Ask a qualified practitioner, and see a doctor for
@@ -11,8 +11,9 @@ An interactive finder for the 12 Schüssler tissue salts. You pick one feature t
 
 ## How it works
 
-1. **Starting pick.** Choose an area (e.g. *Digestion & appetite*), then one feature you are sure of
-   (e.g. *Flatulent colic with constipation*). This counts as the first "yes".
+1. **Starting pick.** Swipe the area carousel (e.g. *Digestion & appetite*), then tap one feature you are
+   sure of (e.g. *Flatulent colic with constipation*). This counts as the first "yes". A feature can be
+   listed under several areas, so it can be found wherever you look first.
 2. **Follow-up questions.** Each question is one feature. The next question is always the one with the
    highest expected information gain over the current salt scores.
 3. **Scoring.** Every salt keeps a score (a Bayesian update):
@@ -23,6 +24,8 @@ An interactive finder for the 12 Schüssler tissue salts. You pick one feature t
 4. **Stopping.** The finder stops when one salt reaches 90%, or after 20 answered questions (the starting
    pick included). Every "I don't know" adds one more allowed question.
 5. **Result.** It shows the top salts whose scores together cover at least 67%.
+6. **Download.** "Download this path" saves a standalone HTML report of the session: the starting pick,
+   every question and answer, the leading salt after each step, the result and the full ranking.
 
 All of these settings are at the top of [`engine.js`](engine.js).
 
@@ -65,7 +68,8 @@ No dependencies: Python 3 standard library only, and plain HTML, CSS and JavaScr
 
 ## Keyboard shortcuts
 
-`1` / `Y` have this · `2` / `N` don't have this · `3` / `I` don't know · `H` hide controls for recording
+`←` / `→` move the area carousel · `1` / `Y` have this · `2` / `N` don't have this · `3` / `I` don't know ·
+`H` hide the restart button for a clean recording
 
 ## License
 
