@@ -17,8 +17,10 @@ An interactive finder for the 12 Schüssler tissue salts. You pick one feature t
 2. **Follow-up questions.** Each question is one feature. The next question is always the one with the
    highest expected information gain over the current salt scores.
 3. **Scoring.** Every salt keeps a score (a Bayesian update):
-   - **Have this:** salts with the feature go up.
-   - **Don't have this:** salts with the feature go down, but are never ruled out.
+   - **Have this:** salts with the feature go up strongly (about 10×).
+   - **Don't have this:** salts with the feature go down only slightly (by about a third). A salt's picture
+     lists many features and nobody shows them all, so a "no" is weak evidence and positive matches drive
+     the ranking.
    - **I don't know:** nothing changes.
    - Features found in **both** source books count more than features from one book.
 4. **Stopping.** The finder stops when one salt reaches 90%, or after 20 answered questions (the starting
