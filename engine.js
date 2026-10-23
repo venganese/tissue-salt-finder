@@ -3,14 +3,18 @@
 // with the highest expected information gain next.
 //
 //  - "yes"  -> salts that have the feature go up, the rest go down
-//  - "no"   -> salts that have the feature go down (never to zero)
+//  - "no"   -> salts that have the feature go down a little: a salt's picture
+//              lists many features and a person shows only a few, so a
+//              "no" is weak evidence and a "yes" is strong evidence
 //  - "idk"  -> nothing changes; the question budget grows by one
 //
 // Shared by index.html (browser) and the node test.
 (function (root) {
   var DEFAULTS = {
-    // chance a person needing this salt says "yes" to the feature
-    likelihood: { AB: 0.85, A: 0.7, B: 0.7, none: 0.15 },
+    // chance a person needing this salt says "yes" to the feature. Kept low
+    // because nobody shows every feature of a salt: a "yes" lifts a salt
+    // ~10x, a "no" only trims it by about a third
+    likelihood: { AB: 0.35, A: 0.25, B: 0.25, none: 0.03 },
     maxDepth: 20,          // answered (non-IDK) questions allowed, counting the
                            // starting pick as the first "yes" (so 19 follow-ups)
     topShare: 0.67,        // result = top salts covering 67% of the score
